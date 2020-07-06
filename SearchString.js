@@ -2,6 +2,7 @@
 function loadBook(filename, dislpayName){
     let currentBook= "";
     let url= "books/"+ filename;
+    console.log(url);
 
     //reset UI
      document.getElementById("fileName").innerHTML= dislpayName;
@@ -16,8 +17,11 @@ function loadBook(filename, dislpayName){
      xhr.onreadystatechange= function(){
          if (xhr.readyState ==4 && xhr.status== 200){
              currentBook= xhr.responseText;
+             //Remove line breaks and acarriage returns and replace with a <br>
+             currentBook= currentBook.replace(/(?:\r\n|\r|\n)/g, '<br>');
 
-             document.getElementById("filedContent").innerHTML= currentBook;
+             document.getElementById("fileContent").innerHTML= currentBook;
+
 
              var elmnt= document.getElementById("fileContent");
              elmnt.scrollTop= 0;
