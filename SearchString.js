@@ -28,3 +28,34 @@ function loadBook(filename, dislpayName){
          }
      }
 }
+
+function getDocStats(fileContent){
+    var docLength= document.getElementById("doclength");
+    var wordCount= document.getElementById("wordCount");
+    var charCount= document.getElementById("charCount");
+
+    let text= fileContent.toLowerCase();
+    let wordArray= text.match(/\b\S+\b/g);
+    let wordDictionary= {};
+
+    //Count every word in the wordArray
+    for(let word in wordArray){
+        let wordValue= wordArray[word];
+        if(wordDictionary[wordValue]> 0){
+            wordDictionary[wordValue] +=1;
+        }
+        else {
+            wordDictionary[wordValue]= 1;
+        }
+    }
+}
+
+function sortProperties(obj){
+    //first convert the Object to an Array
+    let rtnArray= Object.defineProperties(obj);
+
+    //Sort the Array
+    rtnArray.Array.sort(function (first, second){
+        return second[1]- first[1]
+    });
+}
